@@ -37,7 +37,7 @@ def fit_neural_network_model(x, y, model, model_dir):
 if __name__ == '__main__':
     print('Started Training')
     args_parser = argparse.ArgumentParser()
-    args_parser.add_argument('--data-dir', type=str, default='/opt/ml/input/data/training')
+    args_parser.add_argument('--data-dir', type=str, default='/opt/ml/input/data/train')
     args_parser.add_argument('--model-dir', type=str, default='/opt/ml/model')
     args_parser.add_argument('--learning-rate', type=float, default=0.01, help='Initial learning rate.')
     args_parser.add_argument('--epochs', type=int, default=50, help='The number of steps to use for training.')
