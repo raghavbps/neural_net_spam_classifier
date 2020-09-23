@@ -4,7 +4,7 @@ import tensorflow as tf
 from sklearn.model_selection import train_test_split
 from tensorflow import keras
 from tensorflow.python.keras import regularizers
-from neural_net_spam_classifier.container.source_dir.preprocess import create_training_data
+from preprocess_helper import create_training_data
 import os
 
 
