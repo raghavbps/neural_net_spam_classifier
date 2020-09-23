@@ -96,6 +96,7 @@ def download_univ_sent_enc_model_from_s3():
 
 
 def create_training_data(data_dir):
+    download_univ_sent_enc_model_from_s3()
     sentence_encoder = hub.load(os.path.join(os.getcwd(), USE_MODEL_DIR))
     print(sentence_encoder(['hello']))
     mail_bodies, mail_bodies_labels = download_mail_bodies_from_s3(data_dir)
