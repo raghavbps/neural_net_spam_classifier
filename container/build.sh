@@ -15,7 +15,7 @@ account=$(aws sts get-caller-identity --query Account --output text)
 
 region=us-east-1
 
-fullname="${account}.dkr.ecr.${region}.amazonaws.com/${algorithm_name}:latest"
+fullname="${account}.dkr.ecr.${region}.amazonaws.com/${algorithm_name}:version1"
 
 # If the repository doesn't exist in ECR, create it.
 
@@ -32,7 +32,7 @@ aws ecr get-login-password --region us-east-1 | docker login --username AWS --pa
 # Build the docker image locally with the image name and then push it to ECR
 # with the full name.
 
-docker build -f Dockerfile --no-cache -t ${algorithm_name} .
+docker build -f Dockerfile -t ${algorithm_name} .
 docker tag ${algorithm_name} ${fullname}
 echo ${fullname}
 docker push ${fullname}

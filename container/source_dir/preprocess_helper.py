@@ -3,6 +3,7 @@ import time
 from html.parser import HTMLParser
 
 import boto3
+import nltk
 import numpy as np
 import tensorflow_hub as hub
 from html2text import html2text
@@ -16,6 +17,7 @@ USE_MODEL_TAR_GZ = 'universal-sentence-encoder_4.tar.gz'
 USE_MODEL_DIR = 'universal-sentence-encoder_4'
 
 porter_stemmer = PorterStemmer()
+nltk.download('stopwords')
 stopwords_list = stopwords.words('english')
 html_parse = HTMLParser()
 mail_body_bucket_name = 'dev.mail.bodies'
