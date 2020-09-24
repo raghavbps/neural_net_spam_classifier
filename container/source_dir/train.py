@@ -23,14 +23,15 @@ def load_neural_network_model():
     return model
 
 
-def fit_neural_network_model(x, y, model, model_dir):
-    model.compile(optimizer='adam',
+def fit_neural_network_model(x, y, model, model_dir, learning_rate):
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate, name='Adam'),
                   loss=tf.keras.losses.BinaryCrossentropy(from_logits=True),
                   metrics=['accuracy'])
     x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=42, shuffle=True)
     model.fit(x_train, y_train, epochs=20, batch_size=1)
     test_loss, test_acc = model.evaluate(x_test, y_test, verbose=2)
     model.save(os.path.join(model_dir, 'nn_model.h5'))
+    print('Test loss:', test_loss)
     print('Test accuracy:', test_acc)
 
 
@@ -46,4 +47,5 @@ if __name__ == '__main__':
     args = args_parser.parse_args()
     print(args)
     x, y = create_training_data(args.data_dir)
-    fit_neural_network_model(x, y, model=load_neural_network_model(), model_dir=args.model_dir)
+    fit_neural_network_model(x, y, model=load_neural_network_model(), model_dir=args.model_dir,
+                             learning_rate=args.learning_rate)

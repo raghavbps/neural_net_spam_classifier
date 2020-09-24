@@ -15,7 +15,7 @@ account=$(aws sts get-caller-identity --query Account --output text)
 
 region=us-east-1
 
-fullname="${account}.dkr.ecr.${region}.amazonaws.com/${algorithm_name}:version3"
+fullname="${account}.dkr.ecr.${region}.amazonaws.com/${algorithm_name}:version4"
 
 # If the repository doesn't exist in ECR, create it.
 
